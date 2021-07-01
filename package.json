@@ -1,0 +1,39 @@
+{
+  "name": "reate",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "description": "A lightweight react global state management library",
+  "keywords": [
+    "react",
+    "redux",
+    "hooks",
+    "state",
+    "store",
+    "reate"
+  ],
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": "git@github.com:mintsweet/reate.git",
+  "author": "mintsweet <0x1304570@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run test"
+  },
+  "peerDependencies": {
+    "react": ">16.8.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
+  }
+}
