@@ -64,7 +64,7 @@ class Reate<
     return value;
   }
 
-  setState(state: S): void {
+  setState(state: Partial<S>): void {
     if (!isPlainObject(state)) {
       throw new Error('state is must be a plain object');
     }
