@@ -30,7 +30,7 @@ class Reate<
   }
 > {
   private state: any = {};
-  private event: any = {};
+  private events: any = {};
   private effect: any = {};
 
   constructor(state: S, effect?: E) {
@@ -42,14 +42,23 @@ class Reate<
   }
 
   private on<K extends keyof S>(key: K, callback: EventCallback<S[K]>): void {
-    if (!this.event[key]) {
-      this.event[key] = callback;
+    let s = this.events[key];
+    if (!s) {
+      s = [];
+      s.push(callback);
+      this.events[key] = s;
+    } else if (!s.includes(callback)) {
+      s.push(callback);
     }
   }
 
-  private off<K extends keyof S>(key: K): void {
-    if (this.event[key]) {
-      this.event[key] = undefined;
+  private off<K extends keyof S>(key: K, callback: EventCallback<S[K]>): void {
+    const s = this.events[key];
+    if (s) {
+      const index = s.indexOf(callback);
+      if (index >= 0) {
+        s.splice(index, 1);
+      }
     }
   }
 
@@ -58,7 +67,7 @@ class Reate<
 
     useEffect(() => {
       this.on(key, setValue);
-      return () => this.off(key);
+      return () => this.off(key, setValue);
     }, [key]);
 
     return value;
@@ -69,10 +78,13 @@ class Reate<
       throw new Error('state is must be a plain object');
     }
 
-    Object.keys(state).forEach((key) => {
+    Object.keys(state).forEach(key => {
       this.state[key] = state[key];
-      if (this.event[key]) {
-        this.event[key](state[key]);
+      const callbacks = this.events[key];
+      if (callbacks) {
+        callbacks.forEach(callback => {
+          callback(state[key]);
+        });
       }
     });
   }
