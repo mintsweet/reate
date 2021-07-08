@@ -1,6 +1,6 @@
 {
   "name": "reate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "description": "A lightweight react global state management library",
   "keywords": [
@@ -23,7 +23,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "test": "jest",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "peerDependencies": {
     "react": ">16.8.0"
