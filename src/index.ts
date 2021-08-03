@@ -26,7 +26,7 @@ function isPlainObject(value: any): boolean {
 class Reate<
   S extends State,
   E extends {
-    [key: string]: (store: Reate<S, E>, payload?: any) => void;
+    [key: string]: (store: Reate<S, any>, payload?: any) => void;
   }
 > {
   private state: any = {};
@@ -82,7 +82,7 @@ class Reate<
       this.state[key] = state[key];
       const callbacks = this.events[key];
       if (callbacks) {
-        callbacks.forEach(callback => {
+        callbacks.forEach((callback: any) => {
           callback(state[key]);
         });
       }
