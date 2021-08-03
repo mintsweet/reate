@@ -79,12 +79,14 @@ class Reate<
     }
 
     Object.keys(state).forEach(key => {
-      this.state[key] = state[key];
-      const callbacks = this.events[key];
-      if (callbacks) {
-        callbacks.forEach((callback: any) => {
-          callback(state[key]);
-        });
+      if (this.state[key] !== state[key]) {
+        this.state[key] = state[key];
+        const callbacks = this.events[key];
+        if (callbacks) {
+          callbacks.forEach((callback: any) => {
+            callback(state[key]);
+          });
+        }
       }
     });
   }
