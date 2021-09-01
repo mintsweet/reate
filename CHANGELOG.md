@@ -1,5 +1,12 @@
 # Reate
 
+## 1.2.0
+
+`2021-09-01`
+
+  - 🌟 Compare the state twice when updating the state.
+  - 🛠 Improve the type definition.
+
 ## 1.1.0
 
 `2021-07-08`
